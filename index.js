@@ -1,5 +1,5 @@
 'use strict';
-// **Github:** https://github.com/toajs/file-cache
+// **Github:** https://github.com/toajs/toa-favicon
 //
 // **License:** MIT
 
@@ -8,14 +8,14 @@ var path = require('path');
 var crypto = require('crypto');
 var Thunk = require('thunks')();
 
-var stat = Thunk.thunkify.call(fs, fs.stat);
-var readFile = Thunk.thunkify.call(fs, fs.readFile);
+var stat = Thunk.thunkify(fs.stat);
+var readFile = Thunk.thunkify(fs.readFile);
 
 module.exports = function toaFavicon(options) {
   options = options || {};
   if (typeof options === 'string') options = {path: options};
 
-  var maxAge = options.maxAge >= 0 ? Math.ceil(options.maxAge / 1000) : 86400;
+  var maxAge = options.maxAge >= 0 ? Math.ceil(options.maxAge / 1000) : 864000;
   var icoPath = path.resolve(process.cwd(), options.path || '');
   if (!path.extname(icoPath)) icoPath = path.join(icoPath, 'favicon.ico');
   var icoObj = {};

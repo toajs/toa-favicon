@@ -49,7 +49,7 @@ describe('favicon()', function() {
       .get('/favicon.ico')
       .expect(200)
       .expect('Content-Type', 'image/x-icon')
-      .expect('Cache-Control', 'max-age=86400')
+      .expect('Cache-Control', 'max-age=864000')
       .expect(function (res) {
         assert(body.toString() === res.body.toString());
       })

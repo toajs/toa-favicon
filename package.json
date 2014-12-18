@@ -4,7 +4,7 @@
   "authors": [
     "Yan Qing <admin@zensh.com>"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
     "gulp-sequence": ">=0.3.0",
     "mocha": ">=1.21.0",
     "should": ">=4.0.4",
-    "supertest": "^0.15.0",
-    "toa": ">=0.4.2"
+    "supertest": ">=0.15.0",
+    "toa": ">=0.5.2"
   },
   "scripts": {
     "test": "gulp test"

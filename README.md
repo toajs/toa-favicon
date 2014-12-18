@@ -1,4 +1,4 @@
-toa-favicon v1.0.0 [![Build Status](https://travis-ci.org/toajs/toa-favicon.svg)](https://travis-ci.org/toajs/toa-favicon)
+toa-favicon v1.0.1 [![Build Status](https://travis-ci.org/toajs/toa-favicon.svg)](https://travis-ci.org/toajs/toa-favicon)
 ====
 Favicon middleware for toa.
 
@@ -50,7 +50,7 @@ var favicon = require('toa-favicon');
 Return a thunk function.
 
 - `options.path` (String) - The directory you wish to serve, default to `process.cwd()`.
-- `options.maxAge` (Number) - Cache control max age (ms) for the files, default to `24 * 60 * 60 * 1000`.
+- `options.maxAge` (Number) - Cache control max age (ms) for the files, default to `10 * 24 * 60 * 60 * 1000`.
 
 `favicon('static')` is equal to `favicon({path: 'static'})`.
 
