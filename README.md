@@ -1,6 +1,10 @@
-toa-favicon v1.0.1 [![Build Status](https://travis-ci.org/toajs/toa-favicon.svg)](https://travis-ci.org/toajs/toa-favicon)
+toa-favicon
 ====
 Favicon middleware for toa.
+
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Talk topic][talk-image]][talk-url]
 
 ## [toa](https://github.com/toajs/toa)
 
@@ -62,3 +66,12 @@ Return a thunk function.
 ## License
 
 The MIT License (MIT)
+
+[npm-url]: https://npmjs.org/package/toa-favicon
+[npm-image]: http://img.shields.io/npm/v/toa-favicon.svg
+
+[travis-url]: https://travis-ci.org/toajs/toa-favicon
+[travis-image]: http://img.shields.io/travis/toajs/toa-favicon.svg
+
+[talk-url]: https://guest.talk.ai/rooms/a6a9331024
+[talk-image]: https://img.shields.io/talk/t/a6a9331024.svg
