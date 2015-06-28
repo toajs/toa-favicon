@@ -4,7 +4,6 @@ Favicon middleware for toa.
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Talk topic][talk-image]][talk-url]
 
 ## [toa](https://github.com/toajs/toa)
 
@@ -12,29 +11,28 @@ Favicon middleware for toa.
 
 **use as middleware:**
 ```js
-'use strict';
-var Toa = require('toa');
-var favicon = require('toa-favicon');
+var Toa = require('toa')
+var favicon = require('toa-favicon')
 
-var app = Toa(function (Thunk) {
-  if (!this.body) this.body = 'Hi, toa-favicon!';
+var app = Toa(function () {
+  this.body = 'Hi, toa-favicon!'
 });
 
-app.use(favicon('static/favicon.ico'));
-app.listen(3000);
+app.use(favicon('static/favicon.ico'))
+app.listen(3000)
 ```
 
 **use as module**
 ```js
-var Toa = require('toa');
-var favicon = require('../index')('examples');
+var Toa = require('toa')
+var favicon = require('toa-favicon')('examples')
 
-var app = Toa(function (Thunk) {
-  if (this.path === '/favicon.ico') return Thunk.call(this, favicon);
-  this.body = 'Hi, toa-favicon!';
-});
+var app = Toa(function *() {
+  yield favicon
+  this.body = 'Hi, toa-favicon!'
+})
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 ## Installation
@@ -72,6 +70,3 @@ The MIT License (MIT)
 
 [travis-url]: https://travis-ci.org/toajs/toa-favicon
 [travis-image]: http://img.shields.io/travis/toajs/toa-favicon.svg
-
-[talk-url]: https://guest.talk.ai/rooms/a6a9331024
-[talk-image]: https://img.shields.io/talk/t/a6a9331024.svg
