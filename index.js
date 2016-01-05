@@ -24,8 +24,8 @@ module.exports = function toaFavicon (options) {
     md5: crypto.createHash('md5').update(file).digest('base64')
   }
 
-  return function favicon (callback) {
-    if (this.path !== '/favicon.ico') return callback()
+  return function favicon (done) {
+    if (this.path !== '/favicon.ico') return done()
 
     var method = this.method
     if (method !== 'GET' && method !== 'HEAD') {
