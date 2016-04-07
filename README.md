@@ -4,6 +4,7 @@ Favicon middleware for toa.
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
+[![Downloads][downloads-image]][downloads-url]
 
 ## [toa](https://github.com/toajs/toa)
 
@@ -70,3 +71,6 @@ The MIT License (MIT)
 
 [travis-url]: https://travis-ci.org/toajs/toa-favicon
 [travis-image]: http://img.shields.io/travis/toajs/toa-favicon.svg
+
+[downloads-url]: https://npmjs.org/package/toa-favicon
+[downloads-image]: http://img.shields.io/npm/dm/toa-favicon.svg?style=flat-square

@@ -3,20 +3,19 @@
 //
 // **License:** MIT
 
-/*global describe, it*/
-
 var fs = require('fs')
 var Toa = require('toa')
 var path = require('path')
+var tman = require('tman')
 var crypto = require('crypto')
 var assert = require('assert')
 var request = require('supertest')
 var favicon = require('../index')
 
-describe('favicon()', function () {
+tman.suite('favicon()', function () {
   var icoPath = path.join(__dirname, 'fixtures', 'favicon.ico')
 
-  it('should only respond on /favicon.ico', function (done) {
+  tman.it('should only respond on /favicon.ico', function (done) {
     var app = Toa(function () {
       assert(this.body == null)
       assert.strictEqual(this.get('Content-Type'), '')
@@ -30,7 +29,7 @@ describe('favicon()', function () {
       .expect('hello', done)
   })
 
-  it('should not enter rest process on /favicon.ico', function (done) {
+  tman.it('should not enter rest process on /favicon.ico', function (done) {
     var app = Toa(function () {
       assert.strictEqual('It should not run!', true)
     })
@@ -45,7 +44,7 @@ describe('favicon()', function () {
       .end(done)
   })
 
-  it('should not accept POST requests', function (done) {
+  tman.it('should not accept POST requests', function (done) {
     var app = Toa()
     app.use(favicon(icoPath))
 
@@ -55,7 +54,7 @@ describe('favicon()', function () {
       .expect(405, done)
   })
 
-  it('should send the favicon', function (done) {
+  tman.it('should send the favicon', function (done) {
     var body = fs.readFileSync(icoPath)
     var app = Toa()
     app.use(favicon('test/fixtures'))
@@ -71,7 +70,7 @@ describe('favicon()', function () {
       .end(done)
   })
 
-  it('should respond with 304', function (done) {
+  tman.it('should respond with 304', function (done) {
     var lastModified = fs.statSync(icoPath).mtime.toUTCString()
     var md5 = crypto.createHash('md5').update(fs.readFileSync(icoPath)).digest('base64')
     var app = Toa()
@@ -87,7 +86,7 @@ describe('favicon()', function () {
       .end(done)
   })
 
-  it('should set max-age', function (done) {
+  tman.it('should set max-age', function (done) {
     var app = Toa()
     app.use(favicon({
       path: icoPath,
@@ -99,7 +98,7 @@ describe('favicon()', function () {
       .expect(200, done)
   })
 
-  it('should accept 0', function (done) {
+  tman.it('should accept 0', function (done) {
     var app = Toa()
     app.use(favicon({
       path: icoPath,
