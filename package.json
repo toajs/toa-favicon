@@ -4,14 +4,14 @@
   "authors": [
     "Yan Qing <admin@zensh.com>"
   ],
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:toajs/toa-favicon.git"
   },
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=0.12"
   },
   "homepage": "https://github.com/toajs/toa-favicon",
   "keywords": [
@@ -23,11 +23,10 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "should": "^8.3.0",
-    "standard": "^6.0.8",
-    "supertest": "^1.2.0",
-    "tman": "^0.5.3",
-    "toa": "^1.4.2"
+    "standard": "^8.0.0",
+    "supertest": "^2.0.0",
+    "tman": "^1.2.2",
+    "toa": "^1.8.9"
   },
   "scripts": {
     "test": "standard && tman"

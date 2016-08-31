@@ -30,7 +30,7 @@ module.exports = function toaFavicon (options) {
     var method = this.method
     if (method !== 'GET' && method !== 'HEAD') {
       this.status = method === 'OPTIONS' ? 200 : 405
-      this.set('Allow', 'GET, HEAD, OPTIONS')
+      this.set('allow', 'GET, HEAD, OPTIONS')
       this.end()
     }
 
@@ -42,7 +42,7 @@ module.exports = function toaFavicon (options) {
       this.end()
     }
 
-    this.set('Cache-Control', 'max-age=' + maxAge)
+    this.set('cache-control', 'max-age=' + maxAge)
     this.type = 'image/x-icon'
     this.body = icoObj.content
     this.end()
