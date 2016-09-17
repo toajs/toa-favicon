@@ -24,14 +24,14 @@ module.exports = function toaFavicon (options) {
     md5: crypto.createHash('md5').update(file).digest('base64')
   }
 
-  return function favicon (done) {
-    if (this.path !== '/favicon.ico') return done()
+  return function favicon () {
+    if (this.path !== '/favicon.ico') return
 
     var method = this.method
     if (method !== 'GET' && method !== 'HEAD') {
       this.status = method === 'OPTIONS' ? 200 : 405
       this.set('allow', 'GET, HEAD, OPTIONS')
-      this.end()
+      return this.end()
     }
 
     this.status = 200
@@ -39,7 +39,7 @@ module.exports = function toaFavicon (options) {
     this.etag = icoObj.md5
     if (this.fresh) {
       this.status = 304
-      this.end()
+      return this.end()
     }
 
     this.set('cache-control', 'max-age=' + maxAge)

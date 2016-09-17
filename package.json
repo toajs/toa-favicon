@@ -4,7 +4,7 @@
   "authors": [
     "Yan Qing <admin@zensh.com>"
   ],
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -22,11 +22,14 @@
     "favicon.ico"
   ],
   "dependencies": {},
+  "peerDependencies": {
+    "toa": ">=1.8"
+  },
   "devDependencies": {
     "standard": "^8.0.0",
     "supertest": "^2.0.0",
-    "tman": "^1.2.2",
-    "toa": "^1.8.9"
+    "tman": "^1.4.5",
+    "toa": "^1.8.13"
   },
   "scripts": {
     "test": "standard && tman"
