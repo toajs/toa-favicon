@@ -3,22 +3,22 @@
 //
 // **License:** MIT
 
-var fs = require('fs')
-var path = require('path')
-var crypto = require('crypto')
+const fs = require('fs')
+const path = require('path')
+const crypto = require('crypto')
 
 module.exports = function toaFavicon (options) {
   options = options || {}
   if (typeof options === 'string') options = {path: options}
 
-  var maxAge = options.maxAge >= 0 ? Math.ceil(options.maxAge / 1000) : 864000
+  const maxAge = options.maxAge >= 0 ? Math.ceil(options.maxAge / 1000) : 864000
   var icoPath = path.resolve(process.cwd(), options.path || '')
   if (!path.extname(icoPath)) icoPath = path.join(icoPath, 'favicon.ico')
 
-  var stats = fs.statSync(icoPath)
-  var file = fs.readFileSync(icoPath)
+  const stats = fs.statSync(icoPath)
+  const file = fs.readFileSync(icoPath)
 
-  var icoObj = {
+  const icoObj = {
     content: file,
     lastModified: stats.mtime.toUTCString(),
     md5: crypto.createHash('md5').update(file).digest('base64')
@@ -27,7 +27,7 @@ module.exports = function toaFavicon (options) {
   return function favicon () {
     if (this.path !== '/favicon.ico') return
 
-    var method = this.method
+    let method = this.method
     if (method !== 'GET' && method !== 'HEAD') {
       this.status = method === 'OPTIONS' ? 200 : 405
       this.set('allow', 'GET, HEAD, OPTIONS')

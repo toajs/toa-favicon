@@ -3,10 +3,11 @@
 //
 // **License:** MIT
 
-var Toa = require('toa')
-var toaFavicon = require('../index')
+const Toa = require('toa')
+const toaFavicon = require('../index')
 
-var app = Toa(function () {
+const app = new Toa()
+app.use(function () {
   this.body = 'Hi, toa-favicon!'
 })
 

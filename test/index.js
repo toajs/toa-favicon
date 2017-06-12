@@ -3,26 +3,27 @@
 //
 // **License:** MIT
 
-var fs = require('fs')
-var Toa = require('toa')
-var path = require('path')
-var tman = require('tman')
-var crypto = require('crypto')
-var assert = require('assert')
-var request = require('supertest')
-var favicon = require('../index')
+const fs = require('fs')
+const Toa = require('toa')
+const path = require('path')
+const tman = require('tman')
+const crypto = require('crypto')
+const assert = require('assert')
+const request = require('supertest')
+const favicon = require('../index')
 
 tman.suite('favicon()', function () {
-  var icoPath = path.join(__dirname, 'fixtures', 'favicon.ico')
+  const icoPath = path.join(__dirname, 'fixtures', 'favicon.ico')
 
   tman.it('should only respond on /favicon.ico', function () {
-    var app = Toa(function () {
+    const app = new Toa()
+
+    app.use(favicon('test/fixtures'))
+    app.use(function () {
       assert(this.body == null)
       assert.strictEqual(this.get('Content-Type'), '')
       this.body = 'hello'
     })
-
-    app.use(favicon('test/fixtures'))
 
     return request(app.listen())
       .get('/')
@@ -30,11 +31,12 @@ tman.suite('favicon()', function () {
   })
 
   tman.it('should not enter rest process on /favicon.ico', function () {
-    var app = Toa(function () {
-      assert.strictEqual('It should not run!', true)
-    })
+    const app = new Toa()
 
     app.use(favicon('test/fixtures'))
+    app.use(function () {
+      assert.strictEqual('It should not run!', true)
+    })
 
     return request(app.listen())
       .get('/favicon.ico')
@@ -44,7 +46,7 @@ tman.suite('favicon()', function () {
   })
 
   tman.it('should not accept POST requests', function () {
-    var app = Toa()
+    const app = new Toa()
     app.use(favicon(icoPath))
 
     return request(app.listen())
@@ -54,8 +56,8 @@ tman.suite('favicon()', function () {
   })
 
   tman.it('should send the favicon', function () {
-    var body = fs.readFileSync(icoPath)
-    var app = Toa()
+    const body = fs.readFileSync(icoPath)
+    const app = new Toa()
     app.use(favicon('test/fixtures'))
 
     return request(app.listen())
@@ -69,9 +71,9 @@ tman.suite('favicon()', function () {
   })
 
   tman.it('should respond with 304', function () {
-    var lastModified = fs.statSync(icoPath).mtime.toUTCString()
-    var md5 = crypto.createHash('md5').update(fs.readFileSync(icoPath)).digest('base64')
-    var app = Toa()
+    const lastModified = fs.statSync(icoPath).mtime.toUTCString()
+    const md5 = crypto.createHash('md5').update(fs.readFileSync(icoPath)).digest('base64')
+    const app = new Toa()
     app.use(favicon('test/fixtures'))
 
     return request(app.listen())
@@ -84,7 +86,7 @@ tman.suite('favicon()', function () {
   })
 
   tman.it('should set max-age', function () {
-    var app = Toa()
+    const app = new Toa()
     app.use(favicon({
       path: icoPath,
       maxAge: 5000
@@ -97,7 +99,7 @@ tman.suite('favicon()', function () {
   })
 
   tman.it('should accept 0', function () {
-    var app = Toa()
+    const app = new Toa()
     app.use(favicon({
       path: icoPath,
       maxAge: 0

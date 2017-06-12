@@ -1,5 +1,5 @@
-toa-favicon
-====
+# toa-favicon
+
 Favicon middleware for toa.
 
 [![NPM version][npm-image]][npm-url]
@@ -11,24 +11,28 @@ Favicon middleware for toa.
 ## Demo
 
 **use as middleware:**
-```js
-var Toa = require('toa')
-var favicon = require('toa-favicon')
 
-var app = Toa(function () {
+```js
+const Toa = require('toa')
+const favicon = require('toa-favicon')
+
+const app = new Toa()
+app.use(function () {
   this.body = 'Hi, toa-favicon!'
-});
+})
 
 app.use(favicon('static/favicon.ico'))
 app.listen(3000)
 ```
 
-**use as module**
-```js
-var Toa = require('toa')
-var favicon = require('toa-favicon')('examples')
+**use as module:**
 
-var app = Toa(function *() {
+```js
+const Toa = require('toa')
+const favicon = require('toa-favicon')('examples')
+
+const app = new Toa()
+app.use(function *() {
   yield favicon
   this.body = 'Hi, toa-favicon!'
 })
@@ -45,7 +49,7 @@ npm install toa-favicon
 ## API
 
 ```js
-var favicon = require('toa-favicon');
+const favicon = require('toa-favicon');
 ```
 
 ### favicon([options])
@@ -60,7 +64,6 @@ Return a thunk function.
 `favicon('static')` is equal to `favicon('static/favicon.ico')`.
 
 `favicon('static')` is equal to `favicon('process.cwd()/static/favicon.ico')`.
-
 
 ## License
 
